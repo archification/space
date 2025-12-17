@@ -1,7 +1,11 @@
 use bevy::prelude::*;
 mod components;
 mod systems;
-use systems::{setup::setup, animation::{rotate_objects, pulse_star}};
+use systems::{
+    setup::setup,
+    animation::{rotate_objects, pulse_star},
+    input::{zoom_camera, pan_camera, constrain_camera},
+};
 
 fn main() {
     App::new()
@@ -19,6 +23,12 @@ fn main() {
             ..default()
         })
         .add_systems(Startup, setup)
-        .add_systems(Update, (rotate_objects, pulse_star))
+        .add_systems(Update, (
+            rotate_objects,
+            pulse_star,
+            zoom_camera,
+            pan_camera,
+            constrain_camera.after(zoom_camera).after(pan_camera)
+        ))
         .run();
 }

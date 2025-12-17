@@ -41,7 +41,7 @@ pub fn setup(
             ..default()
         },
     ));
-    let num_planets = 4;
+    let num_planets = rng.random_range(1..=10);
     let station_planet_index = rng.random_range(0..num_planets);
     for i in 0..num_planets {
         let orbit_radius = 6.0 + (i as f32 * 4.0);
