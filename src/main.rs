@@ -1,6 +1,8 @@
 use bevy::prelude::*;
+
 mod components;
 mod systems;
+
 use systems::{
     setup::setup,
     animation::{rotate_objects, pulse_star},
